@@ -537,20 +537,30 @@
   }
 
   /* VENDOR COMPARE CARDS */
-  .vendor-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(26,26,26,0.08); border-radius: 10px; overflow: hidden; margin-top: 32px; }
-  .vendor-card { background: var(--cream); padding: 36px 36px 32px; }
-  .vendor-card h4 { font-size: 22px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.01em; }
+  .vendor-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(26,26,26,0.08); border-radius: 10px; overflow: hidden; margin-top: 32px; }
+  .vendor-card { background: var(--cream); padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .vendor-card-inner { padding: 26px 26px 26px; flex: 1; display: flex; flex-direction: column; }
+  .vendor-photo { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .vendor-card h4 { font-size: 19px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.01em; }
   .vendor-card .vendor-sub { font-size: 13px; color: var(--ink-mute); margin-bottom: 0; }
-  .vendor-price-box { margin: 24px 0; padding: 20px 22px; background: var(--cream-deep); }
+  .vendor-price-box { margin: 18px 0; padding: 16px 18px; background: var(--cream-deep); }
   .vendor-price-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; color: var(--ink-mute); margin-bottom: 6px; }
-  .vendor-price-total { font-size: 40px; font-weight: 700; color: var(--terracotta); letter-spacing: -0.03em; line-height: 1; }
+  .vendor-price-total { font-size: 34px; font-weight: 700; color: var(--terracotta); letter-spacing: -0.03em; line-height: 1; }
   .vendor-price-base { font-size: 12px; color: var(--ink-mute); margin-top: 5px; }
-  .vendor-alert { padding: 14px 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin-top: 20px; }
+  .vendor-alert { padding: 12px 14px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; margin-top: 14px; }
   .vendor-alert.terracotta-alert { border-left: 2px solid var(--terracotta); background: #fff; }
   .vendor-alert.teal-alert { border-left: 2px solid var(--teal); background: #fff; }
   .vendor-alert strong.tc { color: var(--terracotta); }
   .vendor-alert strong.tl { color: var(--teal); }
-  @media (max-width: 700px) { .vendor-compare { grid-template-columns: 1fr; } }
+  /* Cost breakdown table */
+  .breakdown-table { margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 13px; }
+  .bt-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 700; color: var(--ink-mute); margin-bottom: 9px; }
+  .bt-group { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: var(--teal); margin-top: 9px; margin-bottom: 3px; padding-top: 7px; border-top: 1px solid var(--rule-soft); }
+  .bt-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12px; color: var(--ink-soft); padding: 2px 0; }
+  .bt-row span:first-child { flex: 1; }
+  .bt-row span:last-child { font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
+  .bt-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; padding-top: 9px; border-top: 1.5px solid var(--ink); font-size: 13px; font-weight: 700; color: var(--ink); }
+  @media (max-width: 960px) { .vendor-compare { grid-template-columns: 1fr; } }
 
   /* DJ PLAYER */
   .dj-player-wrap { margin-top: 24px; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: var(--cream); }
@@ -829,73 +839,124 @@
 
     <!-- Option A -->
     <div class="vendor-card">
-      <div class="eyebrow">Option A</div>
-      <h4>Full-Service Catering</h4>
-      <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
-      <div class="vendor-price-box">
-        <div class="vendor-price-label">Total</div>
-        <div class="vendor-price-total">$43,002</div>
-      </div>
-      <div class="caption" style="margin-bottom: 10px;">What's included</div>
-      <ul class="incl">
-        <li>Grand charcuterie &amp; artisan cheese board — imported selections, seasonal fruit, honeycomb, truffle mustard, artisan crackers &amp; crostini</li>
-        <li>5 passed hors d'oeuvres (2 hrs): smoked salmon blini · wagyu beef crostini · burrata bruschetta (v, gf) · wild mushroom arancini (v) · fig &amp; prosciutto flatbread</li>
-        <li>Still &amp; sparkling water + soft beverage service throughout</li>
-        <li>8-person service team: floor servers, carver, chef, kitchen support</li>
-        <li>Full setup, service &amp; complete breakdown by 9:30 PM</li>
-        <li>GF &amp; vegetarian options clearly labeled at every station</li>
-      </ul>
-      <div class="vendor-alert terracotta-alert">
-        <strong class="tc">Vendor note:</strong> Recommends staffed Phase 2 service rather than drop-off for this event size — available to scope separately if preferred.
+      <img class="vendor-photo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=220&fit=crop&auto=format&q=80" alt="Mediterranean grazing spread" loading="lazy" />
+      <div class="vendor-card-inner">
+        <div class="eyebrow">Option A</div>
+        <h4>Full-Service Catering</h4>
+        <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
+        <div class="vendor-price-box">
+          <div class="vendor-price-label">Total</div>
+          <div class="vendor-price-total">$43,002</div>
+        </div>
+        <div class="caption" style="margin-bottom: 10px;">What's included</div>
+        <ul class="incl">
+          <li>Grazing table with artisanal cheese, charcuteries, Mediterranean mezzes &amp; homemade breads</li>
+          <li>5 passed hors d'oeuvres (2 hrs) — selection from their full seasonal menu; GF &amp; vegetarian choices included</li>
+          <li>Non-alcoholic beverage service throughout: still &amp; sparkling water, sodas, mixers &amp; fresh fruit</li>
+          <li>Full service team: executive chef + 6 kitchen cooks + event captain + 10 floor servers + bar support</li>
+          <li>Full setup, service &amp; complete breakdown by 9:30 PM</li>
+          <li>Late-night rustic pizza available from the same vendor (Phase 2) — no extra coordination</li>
+        </ul>
+        <div class="breakdown-table">
+          <div class="bt-title">Cost breakdown · all-in</div>
+          <div class="bt-group">Food &amp; Beverage</div>
+          <div class="bt-row"><span>Grazing station (artisan cheese, charcuterie, Mediterranean mezzes &amp; breads)</span><span>$8,539</span></div>
+          <div class="bt-row"><span>5 Passed hors d'oeuvres (2 hrs)</span><span>$5,434</span></div>
+          <div class="bt-row"><span>Non-alcoholic beverage service</span><span>$5,434</span></div>
+          <div class="bt-group">Service Team</div>
+          <div class="bt-row"><span>Executive chef</span><span>$1,093</span></div>
+          <div class="bt-row"><span>Kitchen staff (6 cooks)</span><span>$2,691</span></div>
+          <div class="bt-row"><span>Event captain</span><span>$920</span></div>
+          <div class="bt-row"><span>Bar staff (4 bartenders + 2 bar backs)</span><span>$4,830</span></div>
+          <div class="bt-row"><span>Floor staff (10 servers + 2 sanitation)</span><span>$4,830</span></div>
+          <div class="bt-group">Production</div>
+          <div class="bt-row"><span>Delivery &amp; transportation</span><span>$575</span></div>
+          <div class="bt-row"><span>Production &amp; administration</span><span>$5,151</span></div>
+          <div class="bt-row"><span>NY sales tax (8.875%)</span><span>$3,505</span></div>
+          <div class="bt-total"><span>Total</span><span>$43,002</span></div>
+        </div>
+        <div class="vendor-alert terracotta-alert">
+          <strong class="tc">Phase 2 option:</strong> Rustic pizza late-night service from this same vendor — keeps the whole night under one roof. See Phase 2 below.
+        </div>
       </div>
     </div>
 
     <!-- Option B -->
     <div class="vendor-card">
-      <div class="eyebrow">Option B</div>
-      <h4>Full-Service Catering</h4>
-      <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
-      <div class="vendor-price-box">
-        <div class="vendor-price-label">Total</div>
-        <div class="vendor-price-total">$21,906</div>
-      </div>
-      <div class="caption" style="margin-bottom: 10px;">What's included</div>
-      <ul class="incl">
-        <li>Tuscan-Mezze grazing landscape — imported &amp; domestic charcuterie, aged parmigiano, fresh burrata, marinated olives, roasted peppers, grissini &amp; crostini</li>
-        <li>6 passed hors d'oeuvres: prosciutto &amp; fig crostini · ricotta bruschetta (v) · caprese skewers (v, gf) · salmon crudo · crispy arancini (v, gf) · braised short rib bite</li>
-        <li>Still &amp; sparkling water throughout</li>
-        <li>7-person service team + executive chef on-site</li>
-        <li>Full setup, service &amp; complete breakdown by 9:30 PM</li>
-        <li>GF &amp; vegetarian options labeled throughout</li>
-      </ul>
-      <div class="vendor-alert teal-alert">
-        <strong class="tl">Phase 2 add-on available:</strong> Late-night station + dessert station + 4 staff (9:30 PM–1 AM) for an additional <strong>$6,986</strong> — see Phase 2 below.
+      <img class="vendor-photo" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&h=220&fit=crop&auto=format&q=80" alt="Tuscan mezze spread" loading="lazy" />
+      <div class="vendor-card-inner">
+        <div class="eyebrow">Option B</div>
+        <h4>Full-Service Catering</h4>
+        <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
+        <div class="vendor-price-box">
+          <div class="vendor-price-label">Total</div>
+          <div class="vendor-price-total">$21,906</div>
+        </div>
+        <div class="caption" style="margin-bottom: 10px;">What's included</div>
+        <ul class="incl">
+          <li>Tuscan-Mezze grazing landscape — imported &amp; domestic charcuterie, aged parmigiano, fresh burrata, marinated olives, roasted peppers, grissini &amp; crostini</li>
+          <li>6 passed hors d'oeuvres: prosciutto &amp; fig crostini · ricotta bruschetta (v) · caprese skewers (v, gf) · salmon crudo · crispy arancini (v, gf) · braised short rib bite</li>
+          <li>Still &amp; sparkling water throughout</li>
+          <li>Full service team + executive chef on-site</li>
+          <li>Full setup, service &amp; complete breakdown by 9:30 PM</li>
+          <li>GF &amp; vegetarian options labeled throughout</li>
+        </ul>
+        <div class="breakdown-table">
+          <div class="bt-title">Cost breakdown · all-in</div>
+          <div class="bt-group">Food &amp; Service</div>
+          <div class="bt-row"><span>Full catering package (6 HDs + Tuscan-Mezze grazing table, service team &amp; delivery)</span><span>$15,525</span></div>
+          <div class="bt-row"><span>Non-alcoholic beverage service</span><span>$1,242</span></div>
+          <div class="bt-group">Production</div>
+          <div class="bt-row"><span>Production &amp; administration</span><span>$3,353</span></div>
+          <div class="bt-row"><span>NY sales tax (8.875%)</span><span>$1,786</span></div>
+          <div class="bt-total"><span>Total</span><span>$21,906</span></div>
+        </div>
+        <div class="vendor-alert teal-alert">
+          <strong class="tl">Phase 2 add-on available:</strong> Staffed late-night station + dessert station + 4 staff (9:30 PM–1 AM) for an additional <strong>$6,986</strong> — see Phase 2 below.
+        </div>
       </div>
     </div>
 
     <!-- Option C -->
     <div class="vendor-card">
-      <div class="eyebrow">Option C</div>
-      <h4>Full-Service Catering</h4>
-      <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
-      <div class="vendor-price-box">
-        <div class="vendor-price-label">Total</div>
-        <div class="vendor-price-total">$35,097</div>
-      </div>
-      <div class="caption" style="margin-bottom: 10px;">What's included</div>
-      <ul class="incl">
-        <li>7 passed hors d'oeuvres (cocktail hour) — choose from Land, Sea &amp; Garden categories; includes GF &amp; vegetarian selections</li>
-        <li>1 cocktail grazing station — choose from: House Antipasti, Flatbread Table, Market Table, or Raw Bar</li>
-        <li>Non-alcoholic beverage service throughout cocktail hour (soft bar)</li>
-        <li>Full event team: event captains, 8 servers, chefs, sanitation &amp; operations staff</li>
-        <li>Setup (2 hrs), service &amp; breakdown (1 hr) · staff on-site 5:00 PM – 1:00 AM</li>
-        <li>COI available — will name venue &amp; Cocoon as required</li>
-      </ul>
-      <div class="vendor-alert terracotta-alert" style="margin-top: 16px;">
-        <strong class="tc">Note:</strong> This is a starting proposal — item selections to be finalized on a brief call with the couple. Late-night drop-off (Phase 2) is priced separately; see Phase 2 below.
-      </div>
-      <div class="vendor-alert" style="margin-top: 8px; border-left: 2px solid var(--teal); background: #fff;">
-        <strong class="tl">Availability:</strong> Confirmed for September 26 — though this is a high-demand week for this vendor. Locking in sooner is recommended.
+      <img class="vendor-photo" src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&h=220&fit=crop&auto=format&q=80" alt="Cocktail hour catering" loading="lazy" />
+      <div class="vendor-card-inner">
+        <div class="eyebrow">Option C</div>
+        <h4>Full-Service Catering</h4>
+        <div class="vendor-sub">Phase 1 proposal · 135 guests</div>
+        <div class="vendor-price-box">
+          <div class="vendor-price-label">Total</div>
+          <div class="vendor-price-total">$35,097</div>
+        </div>
+        <div class="caption" style="margin-bottom: 10px;">What's included</div>
+        <ul class="incl">
+          <li>7 passed hors d'oeuvres (cocktail hour) — choose from Land, Sea &amp; Garden categories; GF &amp; vegetarian selections included</li>
+          <li>1 cocktail grazing station — choose from: House Antipasti, Flatbread Table, Market Table, or Raw Bar</li>
+          <li>Non-alcoholic beverage service throughout cocktail hour (soft bar)</li>
+          <li>Full event team: captains, 8 servers, chefs, sanitation &amp; operations staff (5:00 PM – 1:00 AM)</li>
+          <li>Setup (2 hrs), full service &amp; breakdown (1 hr)</li>
+          <li>COI available — will name venue &amp; Cocoon as required</li>
+        </ul>
+        <div class="breakdown-table">
+          <div class="bt-title">Cost breakdown · all-in</div>
+          <div class="bt-group">Food &amp; Beverage</div>
+          <div class="bt-row"><span>Cocktail hour (7 passed HDs + grazing station)</span><span>$13,352</span></div>
+          <div class="bt-row"><span>Soft bar (non-alcoholic beverage service)</span><span>$3,105</span></div>
+          <div class="bt-group">Service Team &amp; Logistics</div>
+          <div class="bt-row"><span>Event team (captains, servers, chefs, sanitation)</span><span>$8,510</span></div>
+          <div class="bt-row"><span>Third-party rentals &amp; supplies</span><span>$4,600</span></div>
+          <div class="bt-row"><span>Delivery &amp; pickup</span><span>$172</span></div>
+          <div class="bt-group">Production</div>
+          <div class="bt-row"><span>Event production &amp; administration</span><span>$2,497</span></div>
+          <div class="bt-row"><span>NY sales tax (8.875%)</span><span>$2,861</span></div>
+          <div class="bt-total"><span>Total</span><span>$35,097</span></div>
+        </div>
+        <div class="vendor-alert terracotta-alert">
+          <strong class="tc">Note:</strong> Starting proposal — menu selections finalized on a brief call with the couple. Late-night Phase 2 is priced separately below.
+        </div>
+        <div class="vendor-alert" style="border-left: 2px solid var(--teal); background: #fff;">
+          <strong class="tl">Availability:</strong> Confirmed for Sep 26 — high-demand week for this vendor. Recommend locking in soon.
+        </div>
       </div>
     </div>
 
@@ -923,21 +984,20 @@
     <!-- Path A -->
     <div style="background: var(--cream); padding: 36px 36px 32px;">
       <div class="eyebrow">If you chose Option A</div>
-      <h4 style="font-size: 22px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.01em;">Standalone drop-off</h4>
-      <div style="font-size: 13px; color: var(--ink-mute); margin-bottom: 20px;">Pizza · Dumplings · Sandwiches · Dessert</div>
+      <h4 style="font-size: 22px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.01em;">Same-vendor late-night</h4>
+      <div style="font-size: 13px; color: var(--ink-mute); margin-bottom: 20px;">Rustic pizza · drop-off at 9:00 PM</div>
       <div style="padding: 20px 22px; background: var(--cream-deep); margin-bottom: 20px;">
         <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; color: var(--ink-mute); margin-bottom: 6px;">Total</div>
-        <div style="font-size: 28px; font-weight: 700; color: var(--ink-mute); letter-spacing: -0.02em; line-height: 1;">TBD · Sourcing now</div>
+        <div style="font-size: 28px; font-weight: 700; color: var(--ink-mute); letter-spacing: -0.02em; line-height: 1;">TBD · Finalizing now</div>
       </div>
       <ul class="incl pending">
-        <li>Pizza — quality NY-style; GF option</li>
-        <li>Dumplings — vegetarian option</li>
-        <li>Sandwiches — vegetarian option</li>
-        <li>Dessert — sourcing in progress</li>
-        <li>Self-serve drop-off at 9:00 PM</li>
+        <li>Rustic artisan pizzas from the Phase 1 caterer's own menu — Margherita, burrata &amp; heirloom tomato, funghi, Diavola, prosciutto &amp; arugula, and more</li>
+        <li>GF pizza option available</li>
+        <li>Drop-off format — self-serve at 9:00 PM, no extra staff needed</li>
+        <li>Single vendor for the whole night — one invoice, zero extra coordination</li>
       </ul>
       <div style="margin-top: 20px; padding: 14px 16px; border-left: 2px solid var(--terracotta); background: #fff; font-size: 13px; color: var(--ink-soft); line-height: 1.55;">
-        <strong>Note:</strong> We're sourcing the best local NYC spots now. Options will be presented for your sign-off before confirmation.
+        <strong>Note:</strong> We're pricing the pizza package now and will have a final number shortly. Menu selections to be confirmed with the couple.
       </div>
     </div>
 
